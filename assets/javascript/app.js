@@ -4,14 +4,15 @@ $(document).ready(function() {
     var keyWord;
     var queryUrl;
     var embedCode;
-    var initialGifs = ["The Matrix", "Guardians of the Galaxy","The Dark Knight"]
+    var gifsArray = ["The Matrix", "Guardians of the Galaxy","The Dark Knight"]
 
-    $(".gif").on("click", function() {
-        // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-        animate();
+    renderButtons();
+
+    $(".gif_btn").on("click", function() {
+        // animate();
+        keyWord=($(this).attr("data-name"))
         
-        keyWord = "fail";
-        queryUrl= apiUrl+cueWord;
+        queryUrl= apiUrl+keyWord;
         console.log(queryUrl);
 
         $.ajax({
@@ -23,27 +24,49 @@ $(document).ready(function() {
             console.log(response)
             $(".gif").html(embedCode)
         });
-
-
-
-
-
-
-
-
-        
-        function animate(){
-            var state = $(this).attr("data-state");
-            if (state === "still") {
-            $(this).attr("src", $(this).attr("data-animate"));
-            $(this).attr("data-state", "animate");
-            } else {
-            $(this).attr("src", $(this).attr("data-still"));
-            $(this).attr("data-state", "still");
-            }
+    });
+    
+    function renderButtons() {
+        $("#buttons-view").empty();
+        for (var i = 0; i < gifsArray.length; i++) {
+          var a = $("<button>");
+          a.addClass("gif_btn");
+          a.attr("data-name", gifsArray[i]);
+          a.text(gifsArray[i]);
+          $("#buttons-view").append(a);
         }
+    }
 
-});
+      
+
+    
+
+    //   $("#add-gif").on("click", function(event) {
+    //     event.preventDefault();
+    //     var newGif = $("#gif-input").val().trim();
+    //     gifsArray.push(newGif);
+    //     renderButtons();
+    //   });
+
+    
 
 
+
+
+
+        // function displayGifInfo() {
   
+        //   var gif = $(this).attr("data-name");
+          
+  
+    //     function animate(){
+    //         var state = $(this).attr("data-state");
+    //         if (state === "still") {
+    //         $(this).attr("src", $(this).attr("data-animate"));
+    //         $(this).attr("data-state", "animate");
+    //         } else {
+    //         $(this).attr("src", $(this).attr("data-still"));
+    //         $(this).attr("data-state", "still");
+    //         }
+    //     };
+    })
