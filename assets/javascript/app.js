@@ -1,10 +1,13 @@
 $(document).ready(function() {
     // global variables
-    var apiUrl = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=";
+    var apiUrl = "https://api.giphy.com/v1/gifs/search?q="
+    var apiKey = "&api_key=dc6zaTOxFJmzC"
+    var apiLimitVerb = "&limit="
+    var apiLimitNum = 5;
     var keyWord;
     var queryUrl;
     var embedCode;
-    var gifsArray = ["The Matrix", "Guardians of the Galaxy","The Dark Knight"]
+    var gifsArray = ["Cat", "Dog","Hamster"]
 
     renderButtons();
 
@@ -12,19 +15,30 @@ $(document).ready(function() {
         // animate();
         keyWord=($(this).attr("data-name"))
         
-        queryUrl= apiUrl+keyWord;
-        console.log(queryUrl);
+        queryUrl= apiUrl+keyWord+apiKey+apiLimitVerb+apiLimitNum;
+        console.log("queryUrl: " + queryUrl);
 
         $.ajax({
             url: queryUrl,
             method: "GET",
         }).then(function(response) {
-            embedCode = "<embed src="+JSON.stringify(response.data.embed_url)+">"
-            console.log(JSON.stringify(response.data.embed_url));
-            console.log(response)
-            $(".gif").html(embedCode)
+            console.log("response: " + response)
+            var results = response.data;
+            for (let i = 0; i < results.length; i++) {
+                if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+                    var gifDiv = $("<div class='item'>");
+                    var rating = results[i].rating;
+                    var p = $("<p>").text("Rating: " + rating);
+                    var personImage = $("<img>");
+                    personImage.attr("src", results[i].images.fixed_height.url);
+                    gifDiv.append(p);
+                    gifDiv.append(personImage);
+                    $("#gif-view").append(gifDiv);
+                }
+            }
         });
     });
+
     
     function renderButtons() {
         $("#buttons-view").empty();
@@ -69,4 +83,4 @@ $(document).ready(function() {
     //         $(this).attr("data-state", "still");
     //         }
     //     };
-    })
+    });
