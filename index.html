@@ -12,30 +12,40 @@
 <body>
     <header>
         <nav>
+            <div id="buttons-view"></div>
 
         </nav>
     </header>
     <main>
         <div class="container">        
-            
+            <div class="row">
             <!-- Buttons -->
-            <div id="buttons-view"></div>
-        
-            <form id="gif-form">
-              <label for="gif-input">Gif Box</label>
-              <input type="text" id="gif-input">
-              <br>
-              <input id="add-gif" type="submit" value="submit">
-            </form>
-            <!-- <form id="num-form">
-            <label for="num-input">How many gifs?</label>
-            <input type="text" id="num-input">
-              <!-- Button triggers -->
-              <!-- <br>
-              <input id="add-gif" type="submit" value="submit">
-            </form> --> -->
+            
+
             <!-- Gifs will show here -->
-            <div id="gif-view"> </div>
+            <div class="col-md-9">
+                <div id="gif-view"> </div>
+            </div>
+
+            <div class="col-md-3">
+            
+                    <form id="gif-form">
+                    <label for="gif-input">Add an animal</label>
+                    <input type="text" id="gif-input">
+                    <br>
+                    <input id="add-gif" type="submit" value="submit">
+                    </form>
+                    <form id="num-form">
+                    
+    
+                    <label for="num-input">Number of gifs</label>
+                    <input type="text" id="num-input">
+                    <br>
+                    <input id="num-gif" type="submit" value="submit">
+                    <p id="next-num"></p>
+                    </form>
+                </div>
+        </div>
     </main>
     <footer>
 

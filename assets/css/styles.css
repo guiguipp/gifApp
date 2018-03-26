@@ -1,0 +1,21 @@
+/* Gif buttons */
+.gif_btn {
+    width: 100px;
+    background-color:#A7A1FF;
+    margin-top: 25px;
+    border-radius: 5px;
+    margin-left: 3px;
+}
+.gif_btn:first-child {
+    margin-left: 15px;
+}
+.gif_btn:hover{
+    background-color:rgb(246, 149, 3);
+}
+.gif_btn:focus {
+    background-color:rgb(246, 188, 3, 0.25);
+}
+.item {
+    display: inline-block;
+    margin: 2px, 0px;   
+}

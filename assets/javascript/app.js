@@ -4,6 +4,7 @@ $(document).ready(function() {
     var apiKey = "&api_key=dc6zaTOxFJmzC"
     var apiLimitVerb = "&limit="
     var apiLimitNum = 10;
+    var newGifNum;
     var keyWord;
     var queryUrl;
     var embedCode;
@@ -70,6 +71,23 @@ $("#add-gif").on("click", function(event) {
         }
     });
 
+// option to change the number of gifs returned  
+$("#num-gif").on("click", function(event) {
+    event.preventDefault();
+    newGifNum = $("#num-input").val().trim();
+    $("#gif-input").val("");
+    apiLimitNum = newGifNum;
+    // change to plural if number entered > 1
+    if (newGifNum < 2) {
+        gifVerb = "gif"
+    }
+    else {
+        gifVerb = "gifs"
+    }
+    $("#next-num").text(`Next click will show ${newGifNum} ${gifVerb}`)
+})
+
+
 // Converts to proper case (source: https://stackoverflow.com/questions/196972/convert-string-to-title-case-with-javascript) 
 String.prototype.toProperCase = function () {
     // Not sure what "/\w\S*/g" stands for... ?
@@ -80,7 +98,6 @@ String.prototype.toProperCase = function () {
 
 // event listener for click on gif
 $(document).on("click", "img", function (){
-    console.log("Click recorded")
     var state = $(this).attr("data-state");
     if (state === "still") {
         $(this).attr("src", $(this).attr("data-animate"));
@@ -91,6 +108,3 @@ $(document).on("click", "img", function (){
     }
     });
 });
-
-// little things to make it better
-// Don't repeat buttons
