@@ -34,7 +34,7 @@ $(document).ready(function() {
                     gifGenerated.attr("data-state","still");
                     gifDiv.append(p);
                     gifDiv.append(gifGenerated);
-                    $("#gif-view").append(gifDiv);
+                    $("#gif-view").prepend(gifDiv);
                 }
             }
             return results;
@@ -53,16 +53,30 @@ function renderButtons() {
         }
     }
 
-
-
 // creates new button with user input
 $("#add-gif").on("click", function(event) {
     event.preventDefault();
     var nameNewGif = $("#gif-input").val().trim();
-    gifsArray.push(nameNewGif);
-    renderButtons();
+    // reset input
+    $("#gif-input").val("");
+    // don't repeat buttons
+    for (let i = 0; i < gifsArray.length; i++) {
+        console.log(gifsArray[i].toString().toLowerCase());
+        if (gifsArray.toString().toLowerCase().includes(nameNewGif.toLowerCase()) === false) {
+            gifsArray.push(nameNewGif.toProperCase());
+            renderButtons();
+            break;
+            } 
+        }
     });
-    
+
+// Converts to proper case (source: https://stackoverflow.com/questions/196972/convert-string-to-title-case-with-javascript) 
+String.prototype.toProperCase = function () {
+    // Not sure what "/\w\S*/g" stands for... ?
+    return this.replace(/\w\S*/g, function(txt)
+    {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+};
+
 
 // event listener for click on gif
 $(document).on("click", "img", function (){
@@ -77,3 +91,6 @@ $(document).on("click", "img", function (){
     }
     });
 });
+
+// little things to make it better
+// Don't repeat buttons
