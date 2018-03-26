@@ -62,7 +62,6 @@ $("#add-gif").on("click", function(event) {
     $("#gif-input").val("");
     // don't repeat buttons
     for (let i = 0; i < gifsArray.length; i++) {
-        console.log(gifsArray[i].toString().toLowerCase());
         if (gifsArray.toString().toLowerCase().includes(nameNewGif.toLowerCase()) === false) {
             gifsArray.push(nameNewGif.toProperCase());
             renderButtons();
@@ -75,7 +74,7 @@ $("#add-gif").on("click", function(event) {
 $("#num-gif").on("click", function(event) {
     event.preventDefault();
     newGifNum = $("#num-input").val().trim();
-    $("#gif-input").val("");
+    $("#num-input").val("");
     apiLimitNum = newGifNum;
     // change to plural if number entered > 1
     if (newGifNum < 2) {

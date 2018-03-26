@@ -1,3 +1,6 @@
+body {
+    background-color: rgb(249, 243, 211)
+}
 /* Gif buttons */
 .gif_btn {
     width: 100px;
@@ -6,8 +9,9 @@
     border-radius: 5px;
     margin-left: 3px;
 }
-.gif_btn:first-child {
-    margin-left: 15px;
+input {
+    margin: 5px 0px;
+    border-radius: 5px;
 }
 .gif_btn:hover{
     background-color:rgb(246, 149, 3);
@@ -17,5 +21,9 @@
 }
 .item {
     display: inline-block;
-    margin: 2px, 0px;   
+    margin: 2px;   
+}
+header {
+    margin-bottom: 100px;
+    padding: 20px 10px;
 }
